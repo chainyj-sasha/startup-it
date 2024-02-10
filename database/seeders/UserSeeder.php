@@ -18,12 +18,14 @@ class UserSeeder extends Seeder
             'name' => 'Alex',
             'email' => 'alex@example.ru',
             'password' => Hash::make('11111'),
+            'bonus' => 200,
         ]);
 
         User::create([
             'name' => 'Anna',
             'email' => 'anna@example.ru',
             'password' => Hash::make('22222'),
+            'bonus' => 150,
         ]);
     }
 }

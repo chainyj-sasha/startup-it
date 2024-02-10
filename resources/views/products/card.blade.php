@@ -1,7 +1,7 @@
 @foreach($products as $product)
     <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         <!-- TODO: добавлять синюю рамку карточке товара (класс border-primary), если на товар можно потратить баллы -->
-        <article class="card mt-5 overflow-hidden border-primary">
+        <article class="card mt-5 overflow-hidden {{ $product->discount ? 'border-primary' : '' }}">
             <div class="img-wrap">
                 <img class="w-100" src="{{ asset('storage/' . $product->image) }}" alt="Изображение товара">
             </div>

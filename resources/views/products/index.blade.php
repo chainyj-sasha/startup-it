@@ -9,7 +9,7 @@
 
             <div class="row">
 
-                @include('products.card')
+                @include('products.card',  ['cardColor' => 'yellow'])
 
             </div>
 

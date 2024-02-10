@@ -14,6 +14,7 @@ class ProductSeeder extends Seeder
             'title' => 'Шоссейный велосипед BMC ' . $countProduct,
             'image' => 'pic-1.webp',
             'price' => rand(1000, 10000),
+            'discount' => 0,
         ]);
 
     }
