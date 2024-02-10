@@ -10,13 +10,22 @@ class Product extends Model
 {
     use HasFactory;
 
-    /**
-     * @mixin Builder
-     */
-
     protected $fillable = [
         'title',
         'image',
         'price',
     ];
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('count')->withTimestamps();
+    }
+
+    public function getPriceForCount()
+    {
+        if (!is_null($this->pivot)) {
+            return $this->pivot->count * $this->price;
+        }
+        return $this->price;
+    }
 }

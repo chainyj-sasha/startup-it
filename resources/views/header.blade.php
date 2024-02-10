@@ -12,7 +12,7 @@
 
 
         <div>
-            <a class="btn" href="/cart.html" title="Корзина">
+            <a class="btn" href="{{ route('cart.index') }}" title="Корзина">
                 <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M7.5 18C8.32843 18 9 18.6716 9 19.5C9 20.3284 8.32843 21 7.5 21C6.67157 21 6 20.3284 6 19.5C6 18.6716 6.67157 18 7.5 18Z"
@@ -42,7 +42,7 @@
                 <!-- Кнопка выйти -->
                 <form action="{{ route('logout') }}" method="post">
                     @csrf
-                    <button class="btn" title="Выйти">
+                    <button type="submit" class="btn" title="Выйти">
                         <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M9 4.5H8C5.64298 4.5 4.46447 4.5 3.73223 5.23223C3 5.96447 3 7.14298 3 9.5V14.5C3 16.857 3 18.0355 3.73223 18.7678C4.46447 19.5 5.64298 19.5 8 19.5H9"

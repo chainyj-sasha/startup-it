@@ -19,11 +19,11 @@ class ProductSeeder extends Seeder
     }
     public function run(): void
     {
-        $countProduct = 36;
+        $countProduct = 0;
 
-        while ($countProduct > 0) {
+        while ($countProduct <= 36) {
             $this->addProduct($countProduct);
-            $countProduct -= 1;
+            $countProduct += 1;
         }
     }
 }

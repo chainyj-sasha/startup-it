@@ -13,16 +13,32 @@
                     <p class="fw-bold fs-5 m-0">
                         {{$product->price}} ₽
                     </p>
-                    <button class="btn btn-primary">
-                        В корзину
-                    </button>
 
-                    <!-- TODO: этот блок появлется после нажатия кнопки "В корзину" -->
-                    <!-- <div class="d-flex align-items-center gap-3">
-                        <button class="btn btn-outline-primary">-</button>
-                        <span>1</span>
-                        <button class="btn btn-outline-primary">+</button>
-                    </div> -->
+
+
+                    @if(auth()->check() && $product->orders()->where('user_id', auth()->user()->id)->where('product_id', $product->id)->exists())
+                         <div class="d-flex align-items-center gap-3">
+                             <form action="{{ route('cart.remove', $product) }}" method="post">
+                                 @csrf
+                                 <button type="submit" class="btn btn-outline-primary">-</button>
+                             </form>
+
+                             <span>{{ $product->orders()->where('product_id', $product->id)->first()->pivot->count }} </span>
+                             <form action="{{ route('cart.add', $product) }}" method="post">
+                                 @csrf
+                                 <button type="submit" class="btn btn-outline-primary">+</button>
+                             </form>
+
+                        </div>
+                    @else
+                        <form action="{{ route('cart.add', $product) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">
+                                В корзину
+                            </button>
+                        </form>
+                    @endif
+
                 </div>
             </div>
         </article>
