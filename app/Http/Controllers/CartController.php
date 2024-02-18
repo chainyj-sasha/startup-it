@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Product;
 use App\Services\CartInterface;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
@@ -17,6 +19,11 @@ class CartController extends Controller
         $this->cartService = $cartService;
     }
 
+    /**
+     * Displaying a list of products in the cart
+     *
+     * @return Application|Factory|View|\Illuminate\Foundation\Application
+     */
     public function index()
     {
         $userId = Auth::user()->id;
@@ -25,7 +32,13 @@ class CartController extends Controller
         return view('cart.show', compact('order'));
     }
 
-    public function add(Product $product)
+    /**
+     * Add product in cart
+     *
+     * @param Product $product
+     * @return RedirectResponse
+     */
+    public function add(Product $product): RedirectResponse
     {
         $userId = Auth::user()->id;
         $order = $this->cartService->getOrder($userId);
@@ -39,7 +52,13 @@ class CartController extends Controller
         return redirect()->route('products.index');
     }
 
-    public function remove(Product $product)
+    /**
+     * Remove product from cart
+     *
+     * @param Product $product
+     * @return RedirectResponse
+     */
+    public function remove(Product $product): RedirectResponse
     {
         $userId = Auth::user()->id;
         $order = $this->cartService->getOrder($userId);

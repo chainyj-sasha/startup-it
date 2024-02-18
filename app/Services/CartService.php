@@ -7,6 +7,12 @@ use App\Models\Product;
 
 class CartService implements CartInterface
 {
+    /**
+     * Get the first order with status 0 for the given user.
+     *
+     * @param int $userId
+     * @return mixed
+     */
 
     public function getOrder(int $userId)
     {
@@ -16,6 +22,12 @@ class CartService implements CartInterface
         ])->first();
     }
 
+    /**
+     * Create new order for the given user
+     *
+     * @param int $userId
+     * @return mixed
+     */
     public function createOrder(int $userId)
     {
         return Order::create([
@@ -23,6 +35,13 @@ class CartService implements CartInterface
         ]);
     }
 
+    /**
+     * Add product to order
+     *
+     * @param Order $order
+     * @param Product $product
+     * @return void
+     */
     public function addProduct(Order $order, Product $product): void
     {
         if ($order->products->contains($product->id)) {
@@ -34,6 +53,13 @@ class CartService implements CartInterface
         }
     }
 
+    /**
+     * Remove product from order
+     *
+     * @param Order $order
+     * @param Product $product
+     * @return void
+     */
     public function removeProduct(Order $order, Product $product): void
     {
         if ($order->products->contains($product->id)) {

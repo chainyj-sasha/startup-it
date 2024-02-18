@@ -1,7 +1,7 @@
 <header class="bg-dark py-2 py-md-3">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2 gap-md-1">
         <a class="text-light text-decoration-none fs-4" href="{{ route('products.index') }}">НА ГЛАВНУЮ</a>
-        <!-- TODO: скрывать, когда пользователь не авторизован -->
+
 
         @auth
             <div class="d-flex flex-column align-items-center">
